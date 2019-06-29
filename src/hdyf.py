@@ -32,9 +32,10 @@ def input_checker(word):
     If it is a string, it converts to lower case.
     If not a string, returns invalid input.
     '''
-    if isinstance(word, str):
+    try:
         return word.lower()
-    return False
+    except AttributeError:
+        return None
 
 def quote_display(mood):
     '''

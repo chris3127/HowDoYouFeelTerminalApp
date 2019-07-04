@@ -8,7 +8,6 @@ How Do You Feel - Terminal application test
 This script tests the funtions of the HDYF application
 '''
 
-import os
 import json
 from os import remove as delete_file
 from hdyf import input_checker
@@ -16,32 +15,28 @@ from hdyf import file_to_string
 from hdyf import file_to_dict
 
 def test_input_checker():
-    TEST1 = 'SHOULD BE LOWER'
-    TEST2 = 134
-    
-    assert input_checker(TEST1) == 'should be lower'
-    assert input_checker(TEST2) == None
+    test1 = 'SHOULD BE LOWER'
+    test2 = 134
+    assert input_checker(test1) == test1.lower()
+    assert input_checker(test2) is None
 
 def test_file_to_string():
-    TEST1 = 'This is a quote'
-    TEST2 = 'Something else'
-    FILENAME = 'test-emotion-dict.txt'
-    with open(FILENAME, 'x+') as file:
-        file.write(TEST1)
-    
-    assert file_to_string(FILENAME) == TEST1
-    assert file_to_string(FILENAME) != TEST2
-    delete_file(FILENAME)
+    test1 = 'This is a quote'
+    test2 = 'Something else'
+    filename = 'test-emotion-dict.txt'
+    with open(filename, 'x+') as file:
+        file.write(test1)
+    assert file_to_string(filename) == test1
+    assert file_to_string(filename) != test2
+    delete_file(filename)
 
 def test_file_to_dict():
-    CHECK = {'key': 'value'}
-    CHECK2 = {'key1': 'value1'}
-    TEST = json.dumps({'key': 'value'})
-    #TEST1 = json.dumps({'key1': 'value1'})
-    FILENAME = 'test-emotion-dict.json'
-    with open(FILENAME, 'x+') as file:
-        file.write(TEST)
-    
-    assert file_to_dict(FILENAME) == CHECK
-    assert file_to_dict(FILENAME)!= CHECK2
-    delete_file(FILENAME)
+    check = {'key': 'value'}
+    check2 = {'key1': 'value1'}
+    test = json.dumps({'key': 'value'})
+    filename = 'test-emotion-dict.json'
+    with open(filename, 'x+') as file:
+        file.write(test)
+    assert file_to_dict(filename) == check
+    assert file_to_dict(filename) != check2
+    delete_file(filename)

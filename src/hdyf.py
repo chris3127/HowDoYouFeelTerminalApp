@@ -1,4 +1,4 @@
-#! /Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+#!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 '''
 Author:Chris Moran
 Contact:chris@equalreality.com
@@ -122,19 +122,19 @@ def select_mood():
         else:
             print('\nInvalid input, please try again')
 
-def add_quote(emotion, FILENAME = 'emotion-dict.json'):
+def add_quote(emotion, filename='emotion-dict.json'):
     '''
     This appends the quote from the user to the relevant list in the emotion-dict.json file
     '''
     quote_add = input('\nWhat quote would you like to add\n\n: ')
     try:
-        with open(FILENAME, 'r') as file:
+        with open(filename, 'r') as file:
             text = json.load(file)
     except FileNotFoundError:
         print('The emotion list file is not present')
         print('Please relocate the file and restart the application')
         exit()
-    with open(FILENAME, 'w') as file:
+    with open(filename, 'w') as file:
         text[emotion].append(quote_add)
         json.dump(text, file)
     print(f'\nYour new quote has been successfully added to the emotion **{emotion}**.\n')

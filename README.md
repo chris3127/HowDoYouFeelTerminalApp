@@ -10,7 +10,7 @@ The purpose of the How Do You Feel application is to track your mood during the 
 
 As a <ROLE> I want to <DO> so that <BENEFIT>
 
-As a human, I want to better identify my emotions so I can be more aware of my emotions. 
+As a human, I want to better identify my emotions so I can be more aware of my emotions.
 
 #### Problem
 
@@ -42,7 +42,7 @@ This allows the user to add extra quotes to the dictionary. Firstly they identif
 # User Interaction
 ## Outline
 
-The user starts the application, either passing an argument that is their current mood or leaving it blank. If a valid argument is passed, a relevant quote is printed on the screen. If no argument is passed, a menu is displayed asking for input and displaying the available moods. Once a valid mood has been inputted, a quote is printed on the screen that is randomly selected from the emotion dictionary that corresponds to the inputted mood. If an invalid input is passed as an argument, the application uses if/elif/else to direct the user to the help funtion and exits the app. This is so they can fix a spelling error quickly, and pass a correct argument, rather than go through the main menu. 
+The user starts the application, either passing an argument that is their current mood or leaving it blank. If a valid argument is passed, a relevant quote is printed on the screen. If no argument is passed, a menu is displayed asking for input and displaying the available moods. Once a valid mood has been inputted, a quote is printed on the screen that is randomly selected from the emotion dictionary that corresponds to the inputted mood. If an invalid input is passed as an argument, the application uses if/elif/else to direct the user to the help funtion and exits the app. This is so they can fix a spelling error quickly, and pass a correct argument, rather than go through the main menu.
 
 The user then sees a second menu, where they can either track their mood and see what they have selected previously, or add a quote, in which they identify the mood and input the quote to be written to the dictionary. Each of these features uses a try/except loop to catch if the relevant file they are referring to are present. If the file is not present, it will tell the user that they are missing a file and exit the app. Input errors are handled with a while True loop, checking user input against lists, and printing error messages and prompting the user to redo the input.
 
@@ -57,10 +57,16 @@ This is the updated control flow that includes a legend for readsability.
 
 # Implementation plan
 ![original](docs/Trello-workflow-27June-hdyf-terminal-app.png)
-This is the initial Trello board
+
+This is the initial Trello board at the start of the project.
 
 ![original](docs/Trello-workflow-29June.png)
+
 This is the board at the end of writing the code, prior to writing the tests.
+
+![original](docs/Trello-workflow-4July.png)
+
+This is the board at the end of writing the application. All items in the checklists are done and all features are tested.
 
 # Status updates
 
@@ -74,17 +80,54 @@ This is the board at the end of writing the code, prior to writing the tests.
 
 4/7
 
-- Writing the tests today, added integrating emojis into future feature updates on Trello to improve UX.
+- Writing the tests today, added integrating emojis into future feature updates on Trello to improve UX. The tests are to check the output of specific functions in the application that are not dependant on user input. A nested loop was identified and fixed inside the funciton add_quote by breaking the loop to return to the second menu. From a UX POV, I moved a print statement to inside the second_menu loop, giving input prompts to remind the user of the available inputs.
 
+- Scripts have been changed to executables and a shell script written that will automatically compile the python script into a binary distribution. Help file has been written to give steps for the available ways of interacting with the script and/or executable. A shell scrpipt has also been written to automate the running of the python script _test_HDYF.py. Instructions are under the heading testing.
 
 # Help
 ## How to install
+### Run executable
+- Open the binary distribution executable in the /scr/dist folder.
+- This executable is a binary with all the dependencies incorporated.
+- Run the executable with the command ./hdyf
+
+### Build executable using script
+- Ensure you have the identified dependencies imported
+- Run executable build.sh using command ./build.sh
+- This will create a binary distribution of the HDYF application in the /src/dist folder.
+- Run the executable with the command ./hdyf
+
+### Compile the script yourself
+- Ensure you have the identified dependencies imported
+- Execute the command
+    pyinstaller hdyf.py --clean -F
+- The hdyf python script will be compiled to a dist folder.
+- Navigate to the dist folder and run the command ./hydf
+
+### Edit the script
+- Navigate to the /src folder
+- run the command code hdyf.py
+- Ensure you have the identified dependencies imported
+
+Alternatively
+- Open your preferred IDE
+- Open the file hdyf.py
+- Ensure you have the identified dependencies imported
+
 ## Dependencies
 
 json
 random
 argparse
+pylint
+pytest
+pyinstaller
 
 ## System requirements
 
 # Testing procedure
+Test script test_HDYF.py tests the fuctions check_input, file_to_string and file_to_dict. To run the test, run the command "python3 test_HDYF.py" in the terminal or run the script test.sh using the command ./"test.sh".
+An outline of the tests are:
+- check_input takes an uppercase string and an integer, running them though the check_input fuction which should return the string in lowercase and return None for the integer. This is used to make the input in the second menu non-case sensitive and catch integer inputs.
+- file_to_string creates a temporary txt file and writes a string to the file. It then runs the file through the function file_to_string and checks if the output is equal to the initial string that was written to the file. At the end of the test, it deletes the temporary file.
+-file_to_dict creates a temporary json file and writes a dictionary to the file. It then runs the file through the funtion file_to_dict and checks if the output is equal to the initial dictionary that was written to the file. At the end of the test, it deletes the temporary file.

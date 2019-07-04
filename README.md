@@ -1,20 +1,18 @@
 # Software development plan
 
-## purpose
+## Purpose
 
 The purpose of the How Do You Feel application is to track your mood during the day. It also allows you to see your history of how you have been feeling and give you inspirational quotes that match your mood.
 
 ## Scope
 
-#### high level
+#### High level
 
-As a <ROLE> I want to <DO> so that <BENEFIT>
-
-As a human, I want to better identify my emotions so I can be more aware of my emotions.
+As a human, I want to better identify my emotions so I can track my mood over time to identify hidden patterns and gain personal insight.
 
 #### Problem
 
-How do you track your emotions as they shift during the day and reflect accurately on how you have felt over time. How can you accurately track how often you feel a certain way? Now you can. This app will be quick for the user to input how they are feeling during the course of the day in order to be able to accurately reflect on how they have felt at the end of the day. This will allow for better self reflection and personal growth, without having to leave the terminal or take up a lot of time. The quotes are also chosen to match the users mood and allow a moment of reflection.
+How do you track your emotions as they shift during the day and reflect accurately on how you have felt over time? How can you accurately track how often you feel a certain way? With this app, you can. This app will be quick for the user to input how they are feeling during the course of the day in order to be able to accurately reflect on how they have felt at the end of the day. This will allow for better self-reflection and personal growth, without having to leave the terminal or take up a lot of time. The quotes are also chosen to match the users mood and allow a moment of reflection.
 
 #### Audience
 
@@ -24,7 +22,7 @@ The audience is anyone interested in better identifying and tracking their emoti
 
 When the application starts, a user is asked how they feel. When they identify their emotion from a list, they are presented with a quote that is randomly selected from a list of inspirational quotes relevant to that emotion. The emotion is written to an external file in order to be counted.
 
-After reading the quote, the user goes to a secondary menu where they can either track their mood or add a quote. If they track their mood, a cumlative count of the mood inputs is displayed. 
+After reading the quote, the user goes to a secondary menu where they can either track their mood or add a quote. If they track their mood, a cumulative count of the mood inputs is displayed.
 
 If they add a quote, they select which list they want to append, then are prompted to input a quote that is appended to the relevant list.
 
@@ -48,31 +46,33 @@ The user then sees a second menu, where they can either track their mood and see
 
 After that, the user exits the app.
 
-# Control flow diagram
-![original](docs/HDYF-workflow27June.png)
-This is the initial control flow
+From an input perspective, the available emotions will be displayed as a list as a prompt. The user input here is case sensitive, specifically so the user has to be deliberate with their input. If the input does not match, the looping function allows them to try again. The input in the second menu passes through an input checker so there is no case sensitivity. This is so they can make the next selection quickly. This also works to catch the input of integers which are not a valid input. Whenever user input is required, a list of available options will be printed to prompt for a valid input. Invalid inputs trigger a loop.
 
-![revised](docs/HDYF-workflow29June.png)
-This is the updated control flow that includes a legend for readsability.
+# Control flow diagram
+
+![revised](docs/Moran-CSB-HDYF-workflow29June.png)
+
+This is the updated control flow that includes a legend for readsability. The original diagram is in the docs folder.
 
 # Implementation plan
-![original](docs/Trello-workflow-27June-hdyf-terminal-app.png)
 
-This is the initial Trello board at the start of the project.
+![original](docs/Moran-CSB-Trello-workflow-27June-hdyf-terminal-app.png)
 
-![original](docs/Trello-workflow-29June.png)
+This is the initial Trello board at the start of the project. The features are listed in order of priority.
+
+![revised](docs/Moran-CSB-Trello-workflow-29June.png)
 
 This is the board at the end of writing the code, prior to writing the tests.
 
-![original](docs/Trello-workflow-4July.png)
+![final](docs/Moran-CSB-Trello-workflow-4July.png)
 
-This is the board at the end of writing the application. All items in the checklists are done and all features are tested.
+This is the board at the end of writing the application. All items in the checklists are done and all features are tested. Images of the checklists are in the /docs folder. Outlines of the features have already been covered in the function section of this document.
 
 # Status updates
 
 27/6
 
-- The idea behind the app is wanting a data series that will be able to be presented using hte python package matplotlib. A quick emotion tracking app that is able to be run throughout the day as your mood changes will provide good data pieces that will be of benefit to the user. It will also allow for future iterations to explore timed notifications, data set segmentation along dates and time, and scraping for other quotes to expand the emotion dictionary. Thinking about the flow of the application, I am trying to make it both fit within the scope of my coding ability but also contain the necessary technical components necessary. My thought here is that it is better to start simple and add features than the other way around.
+- The idea behind the app is wanting a data series that will be able to be presented using the python package matplotlib. A quick emotion tracking app that is able to be run throughout the day as your mood changes will provide good data pieces that will be of benefit to the user. It will also allow for future iterations to explore timed notifications, data set segmentation along dates and time, and scraping for other quotes to expand the emotion dictionary. Thinking about the flow of the application, I am trying to make it both fit within the scope of my coding ability but also contain the necessary technical components necessary. My thought here is that it is better to start simple and add features than the other way around.
 
 29/6
 
@@ -82,7 +82,7 @@ This is the board at the end of writing the application. All items in the checkl
 
 - Writing the tests today, added integrating emojis into future feature updates on Trello to improve UX. The tests are to check the output of specific functions in the application that are not dependant on user input. A nested loop was identified and fixed inside the funciton add_quote by breaking the loop to return to the second menu. From a UX POV, I moved a print statement to inside the second_menu loop, giving input prompts to remind the user of the available inputs.
 
-- Scripts have been changed to executables and a shell script written that will automatically compile the python script into a binary distribution. Help file has been written to give steps for the available ways of interacting with the script and/or executable. A shell scrpipt has also been written to automate the running of the python script _test_HDYF.py. Instructions are under the heading testing.
+- Scripts have been changed to executables and a shell script written that will automatically compile the python script into a binary distribution. Help file has been written to give steps for the available ways of interacting with the script and/or executable. A shell scrpipt has also been written to automate the running of the python script test_HDYF.py. Instructions are under the heading, testing.
 
 # Help
 ## How to install
@@ -106,7 +106,7 @@ This is the board at the end of writing the application. All items in the checkl
 
 ### Edit the script
 - Navigate to the /src folder
-- run the command code hdyf.py
+- Run the command code hdyf.py
 - Ensure you have the identified dependencies imported
 
 Alternatively
@@ -116,17 +116,19 @@ Alternatively
 
 ## Dependencies
 
-json
-random
-argparse
-pylint
-pytest
+json,
+random,
+argparse,
+pylint,
+pytest,
 pyinstaller
 
 ## System requirements
 
+This application will run on any system with a command line. There are no performance requirements for this application.
+
 # Testing procedure
-Test script test_HDYF.py tests the fuctions check_input, file_to_string and file_to_dict. To run the test, run the command "python3 test_HDYF.py" in the terminal or run the script test.sh using the command ./"test.sh".
+Test script test_HDYF.py tests the fuctions check_input, file_to_string and file_to_dict. To run the test, run the command "python3 test_HDYF.py" in the terminal or run the script test.sh using the command ./test.sh
 An outline of the tests are:
 - check_input takes an uppercase string and an integer, running them though the check_input fuction which should return the string in lowercase and return None for the integer. This is used to make the input in the second menu non-case sensitive and catch integer inputs.
 - file_to_string creates a temporary txt file and writes a string to the file. It then runs the file through the function file_to_string and checks if the output is equal to the initial string that was written to the file. At the end of the test, it deletes the temporary file.

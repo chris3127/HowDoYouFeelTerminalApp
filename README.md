@@ -1,4 +1,6 @@
-# Software development plan
+# Software Development Plan  
+This code has been uploaded to:  
+https://github.com/chris3127/HowDoYouFeelTerminalApp  
 
 ## Purpose
 
@@ -46,7 +48,10 @@ The user then sees a second menu, where they can either track their mood and see
 
 After that, the user exits the app.
 
-From an input perspective, the available emotions will be displayed as a list as a prompt. The user input here is case sensitive, specifically so the user has to be deliberate with their input. If the input does not match, the looping function allows them to try again. The input in the second menu passes through an input checker so there is no case sensitivity. This is so they can make the next selection quickly. This also works to catch the input of integers which are not a valid input. Whenever user input is required, a list of available options will be printed to prompt for a valid input. Invalid inputs trigger a loop.
+From an input perspective, the available emotions will be displayed as a list as a prompt. The user input here is case sensitive, specifically so the user has to pay attention to their input, mirroring the attention they should pay to how they are feeling.
+The input in the second menu passes through an input checker so there is no case sensitivity. This is so they can make the next selection quickly. Whenever user input is required, a list of available options will be printed to prompt for a valid input.
+
+The application is designed to be quick to use and easy to run at multiple points during the day in order to gain a dataset that can drive insight. Clear prompts show available inputs if the user is new to the application and after a few uses, should only take a few seconds to run.
 
 # Control flow diagram
 
@@ -56,7 +61,7 @@ This is the updated control flow that includes a legend for readsability. The or
 
 # Implementation plan
 
-![original](docs/Moran-CSB-Trello-workflow-27June-hdyf-terminal-app.png)
+![original](docs/Moran-CSB-Trello-workflow-27June.png)
 
 This is the initial Trello board at the start of the project. The features are listed in order of priority.
 
@@ -82,54 +87,50 @@ This is the board at the end of writing the application. All items in the checkl
 
 - Writing the tests today, added integrating emojis into future feature updates on Trello to improve UX. The tests are to check the output of specific functions in the application that are not dependant on user input. A nested loop was identified and fixed inside the funciton add_quote by breaking the loop to return to the second menu. From a UX POV, I moved a print statement to inside the second_menu loop, giving input prompts to remind the user of the available inputs.
 
-- Scripts have been changed to executables and a shell script written that will automatically compile the python script into a binary distribution. Help file has been written to give steps for the available ways of interacting with the script and/or executable. A shell scrpipt has also been written to automate the running of the python script test_HDYF.py. Instructions are under the heading, testing.
+- Scripts have been changed to executables and a shell script written that will automatically compile the python script into a binary distribution. Help file has been written to give steps for the available ways of interacting with the script and/or executable. A shell scrpipt has also been written to automate the running of the python script `test_HDYF.py`. Instructions are under the heading, testing.
 
 # Help
 ## How to install
+To install this application, you will need pyinstaller installed.
+
 ### Run executable
-- Open the binary distribution executable in the /scr/dist folder.
+- Open the binary distribution executable in the `/scr/dist` folder.
 - This executable is a binary with all the dependencies incorporated.
-- Run the executable with the command ./hdyf
+- Run the executable with the command `./hdyf`
 
 ### Build executable using script
-- Ensure you have the identified dependencies imported
-- Run executable build.sh using command ./build.sh
-- This will create a binary distribution of the HDYF application in the /src/dist folder.
-- Run the executable with the command ./hdyf
+- Run executable build.sh using command `./build.sh`
+- This will create a binary distribution of the HDYF application in the `/src/dist` folder.
+- Run the executable with the command `./hdyf`
 
 ### Compile the script yourself
-- Ensure you have the identified dependencies imported
-- Execute the command
-    pyinstaller hdyf.py --clean -F
+- Execute the command  
+    ```pyinstaller hdyf.py --clean -F```
 - The hdyf python script will be compiled to a dist folder.
-- Navigate to the dist folder and run the command ./hydf
+- Navigate to the dist folder and run the command `./hydf`
 
 ### Edit the script
-- Navigate to the /src folder
-- Run the command code hdyf.py
-- Ensure you have the identified dependencies imported
+- Navigate to the `/src` folder
+- Run the command code `hdyf.py`
 
 Alternatively
 - Open your preferred IDE
-- Open the file hdyf.py
-- Ensure you have the identified dependencies imported
+- Open the file `hdyf.py`  
+If you want to test the script for pep8 alignment, you will need pylint installed.
 
 ## Dependencies
 
-json,
-random,
-argparse,
-pylint,
-pytest,
-pyinstaller
+- pylint
+- pytest
+- pyinstaller
 
 ## System requirements
 
 This application will run on any system with a command line. There are no performance requirements for this application.
 
 # Testing procedure
-Test script test_HDYF.py tests the fuctions check_input, file_to_string and file_to_dict. To run the test, run the command "python3 test_HDYF.py" in the terminal or run the script test.sh using the command ./test.sh
+Test script `test_HDYF.py` tests the fuctions check_input, file_to_string and file_to_dict. To run the test, run the command `python3 test_HDYF.py` in the terminal or run the script `test.sh` using the command `./test.sh`. You will require pytest to be installed prior to testing.
 An outline of the tests are:
-- check_input takes an uppercase string and an integer, running them though the check_input fuction which should return the string in lowercase and return None for the integer. This is used to make the input in the second menu non-case sensitive and catch integer inputs.
-- file_to_string creates a temporary txt file and writes a string to the file. It then runs the file through the function file_to_string and checks if the output is equal to the initial string that was written to the file. At the end of the test, it deletes the temporary file.
--file_to_dict creates a temporary json file and writes a dictionary to the file. It then runs the file through the funtion file_to_dict and checks if the output is equal to the initial dictionary that was written to the file. At the end of the test, it deletes the temporary file.
+- check_input takes an uppercase string and an integer, running them though the check_input fuction which should return the string in lowercase and return None for the integer. This is used to make the input in the second menu non-case sensitive and catch integer inputs.  
+- file_to_string creates a temporary txt file and writes a string to the file. It then runs the file through the function file_to_string and checks if the output is equal to the initial string that was written to the file. At the end of the test, it deletes the temporary file.  
+- file_to_dict creates a temporary json file and writes a dictionary to the file. It then runs the file through the funtion file_to_dict and checks if the output is equal to the initial dictionary that was written to the file. At the end of the test, it deletes the temporary file.

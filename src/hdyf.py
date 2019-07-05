@@ -110,14 +110,17 @@ def select_mood():
     try:
         for emotion in emotions:
             print(emotion)
+        print('Back')
     except FileNotFoundError:
         print('The emotion list file is not present')
         print('Please relocate the file and restart the application')
         exit()
     while True:
-        user_input = input('\nChose your emotion: ')
+        user_input = input('\nChoose your emotion: ')
         if user_input in emotions:
             add_quote(user_input)
+            break
+        elif user_input.lower() == 'back':
             break
         else:
             print('\nInvalid input, please try again')
@@ -126,7 +129,7 @@ def add_quote(emotion, filename='emotion-dict.json'):
     '''
     This appends the quote from the user to the relevant list in the emotion-dict.json file
     '''
-    quote_add = input('\nWhat quote would you like to add\n\n: ')
+    quote_add = input('\nWhat quote would you like to add?\n\n: ')
     try:
         with open(filename, 'r') as file:
             text = json.load(file)
